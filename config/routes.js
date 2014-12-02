@@ -34,7 +34,14 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+  '/login': {
+    view: 'login'
+  },
+  '/home': {
+    view: 'mainPage'
+  },
+  '/thisWeek': 'MainController.index'
 
   /***************************************************************************
   *                                                                          *

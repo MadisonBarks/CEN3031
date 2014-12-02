@@ -1,0 +1,37 @@
+<script>
+	$(function() {
+		$('#repeat').click(function() {
+			document.getElementById('audio').play();
+		});
+		$('#submit').click(function() {
+			var word = $(this).data('word');
+			if(word == $('#wordInput').val()) {
+				document.getElementById('audio').src = "/mp3/congrats.mp3"
+				document.getElementById('wordInput').disabled = 'true'
+				document.getElementById('submit').disabled = 'true'
+				document.getElementById('repeat').disabled = 'true'
+				$('#wrong').hide();
+				$('#right').show();
+				$('#continue').show();
+			}
+			else {
+				$('#wordInput').val('');
+				document.getElementById('audio').src = "/mp3/incorrect.mp3";
+				$('#right').hide();
+				$('#wrong').show();
+			}
+		});
+	});
+</script>
+<div class="container" style="margin-top: 40px">
+	<h2 style="color:green;display:none" id="right">You got it right!</h2>
+	<h2 style="color:red;display:none" id="wrong">You got it wrong</h2>
+	<br />
+	<button id="repeat"><span class="glyphicon glyphicon-repeat"></span>Repeat</button>
+	<input type='text' id="wordInput" />
+	<button id="submit" data-word="<%= word %>">Check Word</button>
+	<br />
+	<br />
+	<button id="continue" style="display: none">Continue</button>
+	<audio src="/mp3/<%= word %>.mp3" autoplay rel="noreferrer" id="audio"></audio>
+</div>
